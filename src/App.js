@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Grid from "./components/Grid";
+import Message from "./components/Message";
+import Choice from "./components/Choice";
 
-function App() {
+const App = () => {
+  const [value, setValue] = useState(1);
+  console.log(value)
+
+  const handleClick = (newValue) => {
+    setValue(newValue);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello, React!</h1>
+      <Grid />
+      <div className="messageBox">
+        <Message value={value} onClick={handleClick} />
+      </div>
+      {value % 2 === 1 &&
+      <div className="commandBox">
+        <Choice value={setValue} />
+      </div>}
+      
     </div>
   );
-}
+
+};
 
 export default App;
